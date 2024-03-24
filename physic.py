@@ -261,12 +261,11 @@ if 'найти' in words:
         else:
             print('Неверные данные или поставленный вопрос')
     
-sdfsdfsfs
 
 
 
 
 
 else:
-    print("Некорректный ввод.asdasdasd")
+    print("Некорректный ввод.asdasdasdфывфывфыв")
 
