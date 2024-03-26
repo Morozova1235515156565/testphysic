@@ -200,14 +200,14 @@ if 'найти' in words:
             print('Сила',result,'H')
         else: 
             print('Неверные данные или поставленный вопрос')
-    elif 'давление' in words:
-        if 'H' in words or 'Н' in words and 'м^2' in words:
-            index = words.index('Н' or 'H')
-            F = float(words[index - 1])
-            index = words.index('м^2')
-            S = float(words[index - 1])
-            result = formulas['Найти давление'](F,S)
-            print('Давление равно',result,'Па')
+    if 'первоначальное' in words and 'давление' in words:
+        if 'см' in words and 'па' in words:
+            index_h = words.index('см')
+            h = float(words[index_h - 1])
+            index_pa = words.index('па')
+            pa = float(words[index_pa - 1])
+            result = calculate_daviznach(pa, g, h)
+            print('Первоначальное давление:', result, 'Па')
         else:
             print('Неверные данные или поставленный вопрос')
     elif 'Силу' in words and 'давления' in words:
@@ -250,22 +250,20 @@ if 'найти' in words:
             print('Высота однородной жидкости равна',result,'см')
         else:
             print('Неверные данные или поставленный вопрос')
-    elif 'первоначальное' in words and 'давление' in words:
-        if 'см' in words and 'па' in words:
-            index_h = words.index('см')
-            h = float(words[index_h - 1])
-            index_pa = words.index('па')
-            pa = float(words[index_pa - 1])
-            result = calculate_daviznach(pa, g, h)
-            print('Первоначальное давление:', result, 'Па')
+    elif 'давление' in words:
+        if 'H' in words or 'Н' in words and 'м^2' in words:
+            index = words.index('Н' or 'H')
+            F = float(words[index - 1])
+            index = words.index('м^2')
+            S = float(words[index - 1])
+            result = formulas['Найти давление'](F,S)
+            print('Давление равно',result,'Па')
         else:
             print('Неверные данные или поставленный вопрос')
-    
-
 
 
 
 
 else:
-    print("Некорректный вводghb")
+    print("Некорректный ввод")
 
