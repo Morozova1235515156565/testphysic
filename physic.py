@@ -282,13 +282,9 @@ if 'найти' in words:
             F = float(words[index - 1])
             index = words.index('м^2')
             S = float(words[index - 1])
-<<<<<<< HEAD
             result = formulas['Найти давление'](F, S)
             print('Давление равно', result, 'Па')
-=======
-            result = formulas['Найти давление'](F,S)
-            print('Давление равно',result,'Па')
->>>>>>> 750a24e32096dfb5f7bc48260d27ce213e8d5a3e
+
         else:
             print('Неверные данные или поставленный вопрос')
 
@@ -296,9 +292,4 @@ if 'найти' in words:
 
 
 else:
-<<<<<<< HEAD
-    print("Некорректный ввод")
-=======
-    print("Некорректный ввод")
-
->>>>>>> 750a24e32096dfb5f7bc48260d27ce213e8d5a3e
+    print("Некорректный вводdsaasd")
