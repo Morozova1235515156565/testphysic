@@ -1,3 +1,4 @@
+
 import math
 
 t = None
@@ -72,6 +73,8 @@ def calculate_visot(pa, g, ρ):
 def calculate_daviznach(pa, g, h):
     return pa / (g * h)
 
+def calculate_zakon_arkhimeda(ρ,g,V):
+    return ρ * g * V
 
 formulas = {
     'Найти скорость': calculate_speed,
@@ -216,6 +219,16 @@ if 'найти' in words:
             print('Момент силы равен', result, 'Hm')
         else:
             print('Неверные данные или поставленный вопрос')
+    elif 'силу' in words and 'Архимеда' in words:
+        if 'Па' in words or 'па' in words and 'м^3' in words:
+            index_ρ = words.index('Па')
+            ρ = float(words[index_ρ - 1])
+            index_V = words.index('м^3')
+            V = float(words[index_V - 1])
+            result = calculate_zakon_arkhimeda(ρ, g, V)
+            print('Сила Архимеда равна', result, 'H')
+        else:
+            print('Неверные данные или поставленный вопрос')    
     elif 'силу' in words:
         if 'м' in words and 'Hm' in words:
             index = words.index('м')
@@ -287,9 +300,6 @@ if 'найти' in words:
 
         else:
             print('Неверные данные или поставленный вопрос')
-
-
-
 
 else:
     print("Некорректный ввод")
