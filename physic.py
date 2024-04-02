@@ -76,6 +76,8 @@ def calculate_daviznach(pa, g, h):
 def calculate_zakon_arkhimeda(ρ,g,V):
     return ρ * g * V
 
+def calculate_dav_iz_arkhimeda(F,g,V):
+    return F / (g*V)
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -269,6 +271,18 @@ if 'найти' in words:
             print('Площадь поверхности оказывающее давление', result, 'м^2')
         else:
             print('Неверные данные или поставленный вопрос')
+    elif 'давление' in words and 'из' in words and 'силы'in words and 'Архимеда' in words:
+        if 'Н' in words and 'м^3' in words:
+            index_F = words.index('Н')
+            F = float(words[index_F - 1])
+            index_v= words.index('м^3')
+            V = float(words[index_v - 1])
+            result = calculate_dav_iz_arkhimeda(F,g,V)
+            print('Давление равно',result,'Па')
+        else:
+            print('Неверные данные или поставленный вопрос')
+            
+
     elif 'давление' in words and 'однородной' in words and 'жидкости' in words:
         if 'Па' in words and 'см' in words:
             index_ρ = words.index('Па')
