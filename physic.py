@@ -1,4 +1,3 @@
-
 import math
 
 t = None
@@ -73,11 +72,15 @@ def calculate_visot(pa, g, ρ):
 def calculate_daviznach(pa, g, h):
     return pa / (g * h)
 
-def calculate_zakon_arkhimeda(ρ,g,V):
+
+def calculate_zakon_arkhimeda(ρ, g, V):
     return ρ * g * V
 
-def calculate_dav_iz_arkhimeda(F,g,V):
-    return F / (g*V)
+def calculate_dav_iz_arkhimeda(F, g, V):
+    return F / (g * V)
+def calculate_obhkom_arkh(F,g,ρ):
+    return F / (ρ*g)
+
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -175,6 +178,16 @@ if 'найти' in words:
             print('Плотность равна', result, 'кг/м^3')
         else:
             print('Неверные данные или поставленный вопрос')
+    elif 'объём' in words and 'из' in words and 'силы' in words and 'Архимеда' in words:
+        if 'Па' in words and 'Н' in words or 'H' in words:
+            index_ρ = words.index('Па')
+            ρ = float(words[index_ρ-1])
+            index_F = words.index('Н')
+            F = float(words[index_F -1])
+            result = calculate_obhkom_arkh(F, g, ρ)
+            print('Обёъём равен',result,'м^3')
+        else:
+            print('Неверные данные или поставленный вопрос')
     elif 'объём' in words:
         if 'кг/м^3' in words and 'кг' in words:
             index_p = words.index('кг/м^3')
@@ -230,7 +243,7 @@ if 'найти' in words:
             result = calculate_zakon_arkhimeda(ρ, g, V)
             print('Сила Архимеда равна', result, 'H')
         else:
-            print('Неверные данные или поставленный вопрос')    
+            print('Неверные данные или поставленный вопрос')
     elif 'силу' in words:
         if 'м' in words and 'Hm' in words:
             index = words.index('м')
@@ -271,17 +284,17 @@ if 'найти' in words:
             print('Площадь поверхности оказывающее давление', result, 'м^2')
         else:
             print('Неверные данные или поставленный вопрос')
-    elif 'давление' in words and 'из' in words and 'силы'in words and 'Архимеда' in words:
+    elif 'давление' in words and 'из' in words and 'силы' in words and 'Архимеда' in words:
         if 'Н' in words and 'м^3' in words:
             index_F = words.index('Н')
             F = float(words[index_F - 1])
-            index_v= words.index('м^3')
+            index_v = words.index('м^3')
             V = float(words[index_v - 1])
-            result = calculate_dav_iz_arkhimeda(F,g,V)
-            print('Давление равно',result,'Па')
+            result = calculate_dav_iz_arkhimeda(F, g, V)
+            print('Давление равно', result, 'Па')
         else:
             print('Неверные данные или поставленный вопрос')
-            
+
 
     elif 'давление' in words and 'однородной' in words and 'жидкости' in words:
         if 'Па' in words and 'см' in words:
@@ -311,9 +324,9 @@ if 'найти' in words:
             S = float(words[index - 1])
             result = formulas['Найти давление'](F, S)
             print('Давление равно', result, 'Па')
-
         else:
             print('Неверные данные или поставленный вопрос')
+
 
 else:
     print("Некорректный ввод")
