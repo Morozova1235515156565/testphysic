@@ -1,5 +1,3 @@
-import math
-
 t = None
 s = None
 v = None
@@ -80,7 +78,12 @@ def calculate_dav_iz_arkhimeda(F, g, V):
     return F / (g * V)
 def calculate_obhkom_arkh(F,g,ρ):
     return F / (ρ*g)
-
+def calculate_rabota(F,S):
+    return F * S
+def calculate_sila_iz_rabota(A,S):
+    return A /S
+def calculate_put_iz_rabota(A,F):
+    return A/F
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -244,6 +247,16 @@ if 'найти' in words:
             print('Сила Архимеда равна', result, 'H')
         else:
             print('Неверные данные или поставленный вопрос')
+    elif 'силу' in words and 'из' in words and 'механической' in words and 'работы' in words:
+        if 'Дж' in words and 'м' in words:
+            index_A = words.index('Дж')
+            A = float(words[index_A - 1])
+            index_S = words.index('м')
+            S = float(words[index_S -1])
+            result = calculate_sila_iz_rabota(A, S)
+            print('Сила из механической работы равна',result,'Н')
+        else:
+            print('Неверные данные или поставленный вопрос')
     elif 'силу' in words:
         if 'м' in words and 'Hm' in words:
             index = words.index('м')
@@ -326,7 +339,27 @@ if 'найти' in words:
             print('Давление равно', result, 'Па')
         else:
             print('Неверные данные или поставленный вопрос')
-
+    elif'механическую' in words and 'работу' in words:
+        if 'H' in words or 'Н' in words and 'м' in words:
+            index_F = words.index('Н')
+            F = float(words[index_F -1])
+            index_S = words.index('м')
+            S = float(words[index_S -1])
+            result = calculate_rabota(F, S)
+            print('Механическая работа равна',result,'Дж')
+        else:
+            print('Неверные данные или поставленный вопрос')
+    elif 'путь' in words and 'пройденный' in words and 'телом' in words and 'под' in words and 'воздействием' in words and 'силы' in words:
+        if 'Н' in words and 'Дж' in words:
+            index_A = words.index('Дж')
+            A = float(words[index_A - 1])
+            index_F = words.index('Н')
+            F = float(words[index_F-1])
+            result = calculate_put_iz_rabota(A, F)
+            print('Пройденный путь телом под воздействием силы',result,'м')
+        else:
+            print('Неверные данные или поставленный вопрос')
+    
 
 else:
     print("Некорректный ввод")
