@@ -87,6 +87,10 @@ def calculate_put_iz_rabota(A,F):
 
 def calculate_Kpd(Apol,Azat):
     return (Apol/Azat) * 100
+def calculate_Apol(η,Azat):
+    return (η * Azat)/100
+def calculate_Azat(η,Apol):
+    result (η* Apol) /100
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -362,10 +366,41 @@ if 'найти' in words:
             print('Пройденный путь телом под воздействием силы',result,'м')
         else:
             print('Неверные данные или поставленный вопрос')
+    elif 'полезную' in words and 'работу' in words and 'через' in words and 'кпд' in words:
+        if '%' in words and 'Дж' in words:
+            index_η = words.index('%')
+            η = float(words[index_η -1])
+            index_Azat = words.index('Дж')
+            Azat = float(words[index_Azat -1])
+            result = calculate_Apol(η,Azat)
+            print('Полезная работа равна из КПД',result,'Дж')
+        else:
+             print('Неверные данные или поставленный вопрос')
+    elif 'затраченную' in words and 'работу' in words and  'через' in words and 'кпд' in words:
+        if '%' in words and 'дж' in words:
+            index_Apol = words.index('дж')
+            Apol = float(words[index_Apol - 1])
+            index_η = words.index('%')
+            η = float(words[index_η -1])
+            result = calculate_Azat(η,Apol)
+            print('Затраченная работа полученная из КПД равна',result,'%')
+        else:
+             print('Неверные данные или поставленный вопрос') 
     elif'кпд' in words:
         if 'Дж' in words and 'дж' in words: 
             index_Apol = words.index('Дж')
+            Apol = float(words[index_Apol - 1])
+            index_Azat = words.index('дж')
+            Azat = float(words[index_Azat -1])
+            result = calculate_Kpd(Apol,Azat)
+            print('Коэффициент полезного действия равен',result,'%')
+        else:
+             print('Неверные данные или поставленный вопрос')
+
+
+
             
+
 
 else:
     print("Некорректный ввод")
