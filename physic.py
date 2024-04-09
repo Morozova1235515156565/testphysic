@@ -1,3 +1,4 @@
+
 t = None
 s = None
 v = None
@@ -23,8 +24,7 @@ def calculate_taga(m, g):
 
 
 def calculate_masscherztaga(F, g):
-    if F is not None:
-        return F / g
+    return F / g
 
 
 def calculate_pltnost(m, V):
@@ -84,6 +84,9 @@ def calculate_sila_iz_rabota(A,S):
     return A /S
 def calculate_put_iz_rabota(A,F):
     return A/F
+
+def calculate_Kpd(Apol,Azat):
+    return (Apol/Azat) * 100
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -359,7 +362,10 @@ if 'найти' in words:
             print('Пройденный путь телом под воздействием силы',result,'м')
         else:
             print('Неверные данные или поставленный вопрос')
-    
+    elif'кпд' in words:
+        if 'Дж' in words and 'дж' in words: 
+            index_Apol = words.index('Дж')
+            
 
 else:
     print("Некорректный ввод")
