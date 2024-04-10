@@ -1,4 +1,3 @@
-
 t = None
 s = None
 v = None
@@ -74,23 +73,43 @@ def calculate_daviznach(pa, g, h):
 def calculate_zakon_arkhimeda(ρ, g, V):
     return ρ * g * V
 
+
 def calculate_dav_iz_arkhimeda(F, g, V):
     return F / (g * V)
-def calculate_obhkom_arkh(F,g,ρ):
-    return F / (ρ*g)
-def calculate_rabota(F,S):
-    return F * S
-def calculate_sila_iz_rabota(A,S):
-    return A /S
-def calculate_put_iz_rabota(A,F):
-    return A/F
 
-def calculate_Kpd(Apol,Azat):
-    return (Apol/Azat) * 100
-def calculate_Apol(η,Azat):
-    return (η * Azat)/100
-def calculate_Azat(η,Apol):
-    result (η* Apol) /100
+
+def calculate_obhkom_arkh(F, g, ρ):
+    return F / (ρ * g)
+
+
+def calculate_rabota(F, S):
+    return F * S
+
+
+def calculate_sila_iz_rabota(A, S):
+    return A / S
+
+
+def calculate_put_iz_rabota(A, F):
+    return A / F
+
+
+def calculate_Kpd(Apol, Azat):
+    return (Apol / Azat) * 100
+
+
+def calculate_Apol(η, Azat):
+    return (η * Azat) / 100
+
+
+def calculate_Azat(η, Apol):
+    return (η * Apol) / 100
+def calculate_energy_pot(m ,g , h):
+    return m * g * h
+def calculate_visot_ep(ep,g,m):
+    return ep/(g*m)
+
+
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -191,11 +210,11 @@ if 'найти' in words:
     elif 'объём' in words and 'из' in words and 'силы' in words and 'Архимеда' in words:
         if 'Па' in words and 'Н' in words or 'H' in words:
             index_ρ = words.index('Па')
-            ρ = float(words[index_ρ-1])
+            ρ = float(words[index_ρ - 1])
             index_F = words.index('Н')
-            F = float(words[index_F -1])
+            F = float(words[index_F - 1])
             result = calculate_obhkom_arkh(F, g, ρ)
-            print('Обёъём равен',result,'м^3')
+            print('Обёъём равен', result, 'м^3')
         else:
             print('Неверные данные или поставленный вопрос')
     elif 'объём' in words:
@@ -259,9 +278,9 @@ if 'найти' in words:
             index_A = words.index('Дж')
             A = float(words[index_A - 1])
             index_S = words.index('м')
-            S = float(words[index_S -1])
+            S = float(words[index_S - 1])
             result = calculate_sila_iz_rabota(A, S)
-            print('Сила из механической работы равна',result,'Н')
+            print('Сила из механической работы равна', result, 'Н')
         else:
             print('Неверные данные или поставленный вопрос')
     elif 'силу' in words:
@@ -346,14 +365,14 @@ if 'найти' in words:
             print('Давление равно', result, 'Па')
         else:
             print('Неверные данные или поставленный вопрос')
-    elif'механическую' in words and 'работу' in words:
+    elif 'механическую' in words and 'работу' in words:
         if 'H' in words or 'Н' in words and 'м' in words:
             index_F = words.index('Н')
-            F = float(words[index_F -1])
+            F = float(words[index_F - 1])
             index_S = words.index('м')
-            S = float(words[index_S -1])
+            S = float(words[index_S - 1])
             result = calculate_rabota(F, S)
-            print('Механическая работа равна',result,'Дж')
+            print('Механическая работа равна', result, 'Дж')
         else:
             print('Неверные данные или поставленный вопрос')
     elif 'путь' in words and 'пройденный' in words and 'телом' in words and 'под' in words and 'воздействием' in words and 'силы' in words:
@@ -361,45 +380,66 @@ if 'найти' in words:
             index_A = words.index('Дж')
             A = float(words[index_A - 1])
             index_F = words.index('Н')
-            F = float(words[index_F-1])
+            F = float(words[index_F - 1])
             result = calculate_put_iz_rabota(A, F)
-            print('Пройденный путь телом под воздействием силы',result,'м')
+            print('Пройденный путь телом под воздействием силы', result, 'м')
         else:
             print('Неверные данные или поставленный вопрос')
     elif 'полезную' in words and 'работу' in words and 'через' in words and 'кпд' in words:
         if '%' in words and 'Дж' in words:
             index_η = words.index('%')
-            η = float(words[index_η -1])
+            η = float(words[index_η - 1])
             index_Azat = words.index('Дж')
-            Azat = float(words[index_Azat -1])
-            result = calculate_Apol(η,Azat)
-            print('Полезная работа равна из КПД',result,'Дж')
+            Azat = float(words[index_Azat - 1])
+            result = calculate_Apol(η, Azat)
+            print('Полезная работа равна из КПД', result, 'Дж')
         else:
-             print('Неверные данные или поставленный вопрос')
-    elif 'затраченную' in words and 'работу' in words and  'через' in words and 'кпд' in words:
+            print('Неверные данные или поставленный вопрос')
+    elif 'затраченную' in words and 'работу' in words and 'через' in words and 'кпд' in words:
         if '%' in words and 'дж' in words:
             index_Apol = words.index('дж')
             Apol = float(words[index_Apol - 1])
             index_η = words.index('%')
-            η = float(words[index_η -1])
-            result = calculate_Azat(η,Apol)
-            print('Затраченная работа полученная из КПД равна',result,'%')
+            η = float(words[index_η - 1])
+            result = calculate_Azat(η, Apol)
+            print('Затраченная работа полученная из КПД равна', result, 'ДЖ')
         else:
-             print('Неверные данные или поставленный вопрос') 
-    elif'кпд' in words:
-        if 'Дж' in words and 'дж' in words: 
+            print('Неверные данные или поставленный вопрос')
+    elif 'кпд' in words:
+        if 'Дж' in words and 'дж' in words:
             index_Apol = words.index('Дж')
             Apol = float(words[index_Apol - 1])
             index_Azat = words.index('дж')
-            Azat = float(words[index_Azat -1])
-            result = calculate_Kpd(Apol,Azat)
-            print('Коэффициент полезного действия равен',result,'%')
+            Azat = float(words[index_Azat - 1])
+            result = calculate_Kpd(Apol, Azat)
+            print('Коэффициент полезного действия равен', result, '%')
         else:
-             print('Неверные данные или поставленный вопрос')
+            print('Неверные данные или поставленный вопрос')
+    elif 'высоту' in words and 'на' in words and 'которой' in words and 'находится' in words and 'объект' in words:
+        if 'Дж' in words and 'кг' in words:
+            index_ep = words.index('Дж')
+            ep = float(words[index_ep-1])
+            index_m = words.index('кг')
+            m = float(words[index_m-1])
+            result = calculate_visot_ep(ep, g, m)
+            print('Высота равна',result,'см')
+        else:
+            print('Неверные данные или поставленный вопрос')
+
+    elif 'потенциальную' in words and 'энергию' in words:
+        if 'кг' in words and 'см' in words:
+            index_m = words.index('кг')
+            m = float(words[index_m - 1])
+            index_h = words.index('см')
+            h = float(words[index_h -1])
+            result = calculate_energy_pot(m, g, h)
+            print('Потенциальная энергия равна',result,'ДЖ')
+        else:
+            print('Неверные данные или поставленный вопрос')
 
 
 
-            
+
 
 
 else:
