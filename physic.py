@@ -109,7 +109,10 @@ def calculate_energy_pot(m ,g , h):
 def calculate_visot_ep(ep,g,m):
     return ep/(g*m)
 
-
+def calculate_sila_trenia(μ, P):
+    return μ *P
+def calculate_koef(Ftren,P):
+    return Ftren/P
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -434,6 +437,26 @@ if 'найти' in words:
             h = float(words[index_h -1])
             result = calculate_energy_pot(m, g, h)
             print('Потенциальная энергия равна',result,'ДЖ')
+        else:
+            print('Неверные данные или поставленный вопрос')
+    elif 'силу' in words and 'трения' in words:
+        if 'Н' in words and 'мю' in words:
+            index_P = words.index('Н')
+            P = float(words[index_P - 1])
+            index_μ = words.index('мю')
+            μ = float(words[index_μ + 1])
+            result = calculate_sila_trenia(μ,P)
+            print('Сила трения',result,'Н')
+        else:
+            print('Неверные данные или поставленный вопрос')
+    elif 'коэффициент' in words and 'трения' in words:
+        if 'Н' in words and 'H' in words:
+            index_P = words.index('Н')
+            P = float(words[index_P - 1])
+            index_Ftren = words.index('H')
+            Ftren = float(words[index_Ftren -1])
+            result = calculate_koef(Ftren,P)
+            print('Коэффициент трения равен',result)
         else:
             print('Неверные данные или поставленный вопрос')
 
