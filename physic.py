@@ -113,6 +113,8 @@ def calculate_sila_trenia(μ, P):
     return μ *P
 def calculate_koef(Ftren,P):
     return Ftren/P
+def calculate_sila_reak_opor(μ,Ftren):
+    return Ftren / μ
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -284,6 +286,16 @@ if 'найти' in words:
             S = float(words[index_S - 1])
             result = calculate_sila_iz_rabota(A, S)
             print('Сила из механической работы равна', result, 'Н')
+        else:
+            print('Неверные данные или поставленный вопрос')
+    elif 'силу' in words and 'реакции' in words and 'опоры' in words:
+        if 'H' in words and 'мю' in words:
+            index_Ftren = words.index('H')
+            Ftren = float(words[index_Ftren -1])
+            index_μ = words.index('мю')
+            μ = float(words[index_μ + 1])
+            result = calculate_sila_reak_opor(μ,Ftren)
+            print('Сила реакции опоры через силу трения равна',result,'Н')
         else:
             print('Неверные данные или поставленный вопрос')
     elif 'силу' in words:
