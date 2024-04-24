@@ -115,6 +115,12 @@ def calculate_koef(Ftren,P):
     return Ftren/P
 def calculate_sila_reak_opor(μ,Ftren):
     return Ftren / μ
+def calculate_sila_ypr(k,x):
+    return k*x
+def calculate_dhzeskost_tela(Fypr,x):
+    return Fypr / x
+def calculate_udlinenie(Fypr,k):
+    return Fypr / k
 formulas = {
     'Найти скорость': calculate_speed,
     'найти скорость': calculate_speed,
@@ -298,6 +304,16 @@ if 'найти' in words:
             print('Сила реакции опоры через силу трения равна',result,'Н')
         else:
             print('Неверные данные или поставленный вопрос')
+    elif 'силу' in words and 'упругости' in words:
+        if 'Н/м' in words and '%' in words:
+            index_k = words.index('Н/м')
+            k = float(words[index_k - 1])
+            index_x = words.index('%')
+            x = float(words[index_x -1])
+            result = calculate_sila_ypr(k,x)
+            print('Сила упругости равна', result,'H')
+        else:
+            print('Неверные данные или поставленный вопрос')
     elif 'силу' in words:
         if 'м' in words and 'Hm' in words:
             index = words.index('м')
@@ -469,6 +485,26 @@ if 'найти' in words:
             Ftren = float(words[index_Ftren -1])
             result = calculate_koef(Ftren,P)
             print('Коэффициент трения равен',result)
+        else:
+            print('Неверные данные или поставленный вопрос')
+    elif 'жесткость' in words and 'тела' in words:
+        if 'Н' in words and '%' in words:
+            index_x = words.index('%')
+            x = float(words[index_x -1])
+            index_Fypr = words.index('Н')
+            Fypr = float(words[index_Fypr - 1])
+            result = calculate_dhzeskost_tela(Fypr,x)
+            print('Жескость тела из силы упругости равна',result,'Н/м')
+        else:
+            print('Неверные данные или поставленный вопрос')
+    elif 'удлинение' in words:
+        if 'Н' in words and 'Н/м' in words:
+            index_Fypr = words.index('Н')
+            Fypr = float(words[index_Fypr - 1])
+            index_k = words.index('Н/м')
+            k = float(words[index_k - 1])
+            result = calculate_udlinenie(Fypr, k)
+            print('Удлинение из силы упругости равно',result,'%')
         else:
             print('Неверные данные или поставленный вопрос')
 
